@@ -26,7 +26,7 @@ while True:
 
         print("\nEnter a valid difficulty level\n")
     except ValueError:
-        print("\nPlease enter a valid number\n")
+        print("\nPlease, enter a valid number\n")
 
 
 print(
@@ -38,14 +38,17 @@ attempt_count = 0
 
 while True:
     try:
+        if attempt_count == CHANCES:
+            print("Defeat!\n")
+            break
+
         print(f"ATTEMTP {attempt_count + 1}")
 
         guess = int(input("Enter your guess: "))
 
         if guess == NUMBER_TO_GUESS:
-            print("Correct!\n")
             print(
-                f"Congratulations! You guessed the number in {attempt_count + 1} attempts"
+                f"Correct!\nCongratulations! You guessed the number in {attempt_count + 1} attempts"
             )
             break
 
@@ -53,14 +56,9 @@ while True:
 
         print(f"Incorrect! The number is {distance} than {guess}\n")
 
-        attempt_count += 1
-
-        if attempt_count == CHANCES:
-            print("Defeat!\n")
-            break
-
     except ValueError:
         print("That's not an integer!!\n")
+    finally:
         attempt_count += 1
 
 exit()
